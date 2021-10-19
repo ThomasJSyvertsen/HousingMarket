@@ -36,7 +36,7 @@ public class AddSellerServlet extends HttpServlet {
     	
     	if(hh.showAllHouses().isEmpty()) {
 			request.setAttribute("allHouses", "");
-			path = "index.html";
+			path = "/index.html";
 		}
     	
     	

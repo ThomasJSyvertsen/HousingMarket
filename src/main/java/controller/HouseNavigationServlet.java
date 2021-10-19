@@ -28,7 +28,6 @@ public class HouseNavigationServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HouseHelper doa = new HouseHelper();
 		String act = request.getParameter("doThisToItem");
 		String path = "/viewAllHousesServlet";

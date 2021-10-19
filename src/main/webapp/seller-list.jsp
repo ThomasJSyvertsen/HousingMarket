@@ -28,7 +28,7 @@
 		<input type="submit" value="delete" name="doThisToItem"> 
 		<input type="submit" value="add" name="doThisToItem">
 	</form>
-	<a href="addSellerServlet">Create new Seller</a><br />
-	<a href="index.html">Insert a new Recipe</a>
+	<a href="add-seller.jsp">Create new Seller</a><br />
+	<a href="index.html">Go back home instead</a>
 </body>
 </html>

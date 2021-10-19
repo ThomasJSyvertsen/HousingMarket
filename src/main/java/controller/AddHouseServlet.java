@@ -18,27 +18,30 @@ import model.House;
 public class AddHouseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public AddHouseServlet() {
-        super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public AddHouseServlet() {
+		super();
+	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String address = request.getParameter("address");
 		int zipcode = Integer.parseInt(request.getParameter("zipcode"));
 		int sellingPrice = Integer.parseInt(request.getParameter("sellingPrice"));
 		LocalDate marketDate = LocalDate.parse(request.getParameter("marketDate"));
-		
-		House ri = new House(address, zipcode, sellingPrice, marketDate);
-		HouseHelper doa = new HouseHelper();
-		doa.insertHouse(ri);
-		
+
+		House toAdd = new House(address, zipcode, sellingPrice, marketDate);
+		HouseHelper hh = new HouseHelper();
+		hh.insertHouse(toAdd);
+
+		request.setAttribute("allHouses", hh.showAllHouses());
+
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 	}
 

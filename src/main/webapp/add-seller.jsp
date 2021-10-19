@@ -25,6 +25,6 @@
 	</select> <br />
 	<input type="submit" value="Create Seller and Add Houses">
 </form>
-<a href="index.html">Go add new house instead</a>
+<a href="index.html">Go back home instead</a>
 </body>
 </html>
