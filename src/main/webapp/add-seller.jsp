@@ -19,7 +19,7 @@
 	 
 	Available Houses: <br />
 	<select name="allHousesToAdd" multiple size="6">
-	<c:forEach items="${requestScope.allHouses}" var="currentitem">
+	<c:forEach items="${requestScope.allHousesToAdd}" var="currentitem">
 		<option value="${currentitem.houseId}"> ${currentitem.address} | ${currentitem.sellingPrice}</option>
 	</c:forEach>
 	</select> <br />

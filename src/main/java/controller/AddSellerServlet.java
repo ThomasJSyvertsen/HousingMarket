@@ -30,17 +30,6 @@ public class AddSellerServlet extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	HouseHelper hh = new HouseHelper();
-    	request.setAttribute("allHouses", hh.showAllHouses());
-    	String path = "/add-seller.jsp";
-    	
-    	if(hh.showAllHouses().isEmpty()) {
-			request.setAttribute("allHouses", "");
-			path = "/index.html";
-		}
-    	
-    	
-    	getServletContext().getRequestDispatcher(path).forward(request, response);
 
     }
 
@@ -48,27 +37,38 @@ public class AddSellerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+    	HouseHelper hh = new HouseHelper();
+    	request.setAttribute("allHouses", hh.showAllHouses());
+    	String path = "/viewSellersServlet";
+    	Seller seller;
+    	
+    	if(hh.showAllHouses().isEmpty()) {
+			request.setAttribute("allHouses", "");
+			path = "/index.html";
+		}
+    	
 		String fName = request.getParameter("sellerFirstName");
 		String lName = request.getParameter("sellerLastName");
 		String houseString = request.getParameter("allHousesToAdd");
-		HouseHelper hh = new HouseHelper();
 		
-		House house = hh.searchForHouseById(Integer.parseInt(houseString));
+		if (houseString != null) {
+			House house = hh.searchForHouseById(Integer.parseInt(houseString));
+
+			List<House> houseList;
+			
+			houseList = new ArrayList<House>();
+			
+			houseList.add(house);
+			
+			seller = new Seller(fName, lName, houseList);
+		} else {
+			seller = new Seller(fName, lName);
+		}
 		
-		List<House> houseList;
-		
-		houseList = new ArrayList<House>();
-		
-		System.out.println("Hi there");
-		
-		houseList.add(house);
-		
-		Seller seller = new Seller(fName, lName, houseList);
 		SellerHelper sh = new SellerHelper();
 		sh.insertSeller(seller);
 		
-		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+		getServletContext().getRequestDispatcher(path).forward(request, response);
 	}
 
 }

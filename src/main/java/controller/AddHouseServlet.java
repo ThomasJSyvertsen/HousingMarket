@@ -40,7 +40,7 @@ public class AddHouseServlet extends HttpServlet {
 		HouseHelper hh = new HouseHelper();
 		hh.insertHouse(toAdd);
 
-		request.setAttribute("allHouses", hh.showAllHouses());
+		request.setAttribute("allHousesToAdd", hh.showAllHouses());
 
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 	}

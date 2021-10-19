@@ -26,8 +26,8 @@ public class AddSellerGetHousesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HouseHelper doa = new HouseHelper();
-		 request.setAttribute("allHouses", doa.showAllHouses());
-		 String path = "/seller-list.jsp";
+		 request.setAttribute("allHousesToAdd", doa.showAllHouses());
+		 String path = "/add-seller.jsp";
 		 
 		 getServletContext().getRequestDispatcher(path).forward(request, response);
 	}
